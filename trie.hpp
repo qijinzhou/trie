@@ -11,7 +11,7 @@ template<class TKey, class TValue>
 struct trie_node
 {
 	TKey key;
-	TValue value;
+	std::unique_ptr<TValue> spValue;
 	std::vector<std::unique_ptr<trie_node>> children;
 };
 
@@ -20,8 +20,8 @@ template<class TKey, class TValue>
 class trie
 {
 public:
-	template<class TKeyIter>
-	void emplace(TKeyIter begin, TKeyIter end)
+	template<class TKeyIter, class... TValueConstructArg>
+	void emplace(TKeyIter begin, TKeyIter end, TValueConstructArg&&... valueArg)
 	{
 		auto pNode = &_root;
 		for (auto itr = begin; itr < end; ++itr)
@@ -31,11 +31,12 @@ public:
 			auto itrChild = std::lower_bound(children.begin(), children.end(), key, [](auto&& spNode, auto&& theKey){ return spNode->key < theKey; });
 			if (itrChild == children.end() || (*itrChild)->key != key)
 			{
-				itrChild = children.emplace(itrChild, new trie_node<TKey, TValue>());
+				itrChild = children.emplace(itrChild, std::make_unique<trie_node<TKey, TValue>>());
 				(*itrChild)->key = key;
 			}
 			pNode = itrChild->get();
 		}
+		pNode->spValue = std::make_unique<TValue>(std::forward<TValueConstructArg>(valueArg)...);
 	}
 
 	template<class TKeyIter>
