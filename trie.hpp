@@ -20,6 +20,12 @@ template<class TKey, class TValue>
 class trie
 {
 public:
+	void clear()
+	{
+		_root.children.clear();
+		_size = 0;
+	}
+
 	template<class TKeyIter, class... TValueConstructArg>
 	void emplace(TKeyIter begin, TKeyIter end, TValueConstructArg&&... valueArg)
 	{

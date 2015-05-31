@@ -2,6 +2,17 @@
 
 #include "trie.hpp"
 
+TEST(trie, clear)
+{
+	q::trie<char, int> t;
+	std::string key("hello");
+	t.emplace(key.begin(), key.end());
+
+	t.clear();
+	EXPECT_FALSE(t.find(key.begin(), key.end()));
+	EXPECT_EQ(0u, t.size());
+}
+
 TEST(trie, emplace)
 {
 	q::trie<char, std::string> t;
