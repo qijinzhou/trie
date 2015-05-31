@@ -37,6 +37,7 @@ public:
 			pNode = itrChild->get();
 		}
 		pNode->spValue = std::make_unique<TValue>(std::forward<TValueConstructArg>(valueArg)...);
+		++_size;
 	}
 
 	template<class TKeyIter>
@@ -55,8 +56,19 @@ public:
 		return true;
 	}
 
+	bool empty() const
+	{
+		return _size == 0;
+	}
+
+	size_t size() const
+	{
+		return _size;
+	}
+
 private:
 	trie_node<TKey, TValue> _root;
+	size_t _size = 0;
 };
 
 

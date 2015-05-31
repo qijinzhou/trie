@@ -24,3 +24,23 @@ TEST(trie, find)
 	std::string find2("world");
 	EXPECT_FALSE(t.find(find2.begin(), find2.end()));
 }
+
+TEST(trie, empty)
+{
+	q::trie<char, int> t;
+	EXPECT_TRUE(t.empty());
+
+	std::string key("hello");
+	t.emplace(key.begin(), key.end());
+	EXPECT_FALSE(t.empty());
+}
+
+TEST(trie, size)
+{
+	q::trie<char, int> t;
+	EXPECT_EQ(0u, t.size());
+
+	std::string key("hello");
+	t.emplace(key.begin(), key.end());
+	EXPECT_EQ(1u, t.size());
+}
