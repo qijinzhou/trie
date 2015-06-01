@@ -9,7 +9,7 @@ find_package(GTest REQUIRED)
 
 include_directories(${GTEST_INCLUDE_DIRS})
 
-set(SOURCE_FILES trie_map.test.cpp)
+set(SOURCE_FILES trie_set.test.cpp trie_map.test.cpp)
 
 add_executable(trie_test ${SOURCE_FILES})
 
