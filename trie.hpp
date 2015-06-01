@@ -8,17 +8,16 @@ namespace q
 
 
 template<class TKey, class TValue>
-struct trie_node
-{
-	TKey key;
-	std::unique_ptr<TValue> spValue;
-	std::vector<std::unique_ptr<trie_node>> children;
-};
-
-
-template<class TKey, class TValue>
 class trie
 {
+	template<class TNodeKey, class TNodeValue>
+	struct trie_node
+	{
+		TNodeKey key;
+		std::unique_ptr<TNodeValue> spValue;
+		std::vector<std::unique_ptr<trie_node>> children;
+	};
+
 public:
 	void clear()
 	{
