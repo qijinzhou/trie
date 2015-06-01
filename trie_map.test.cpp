@@ -2,9 +2,9 @@
 
 #include "trie.hpp"
 
-TEST(trie, clear)
+TEST(trie_map, clear)
 {
-	q::trie<char, int> t;
+	q::trie_map<char, int> t;
 	std::string key("hello");
 	t.emplace(key.begin(), key.end());
 
@@ -13,9 +13,9 @@ TEST(trie, clear)
 	EXPECT_EQ(0u, t.size());
 }
 
-TEST(trie, emplace)
+TEST(trie_map, emplace)
 {
-	q::trie<char, std::string> t;
+	q::trie_map<char, std::string> t;
 	std::string key("hello");
 	t.emplace(key.begin(), key.end());
 
@@ -23,9 +23,9 @@ TEST(trie, emplace)
 	t.emplace(key2.begin(), key2.end(), "Hello World!");
 }
 
-TEST(trie, find)
+TEST(trie_map, find)
 {
-	q::trie<char, int> t;
+	q::trie_map<char, int> t;
 	std::string key("hello");
 	t.emplace(key.begin(), key.end());
 
@@ -36,9 +36,9 @@ TEST(trie, find)
 	EXPECT_FALSE(t.find(find2.begin(), find2.end()));
 }
 
-TEST(trie, empty)
+TEST(trie_map, empty)
 {
-	q::trie<char, int> t;
+	q::trie_map<char, int> t;
 	EXPECT_TRUE(t.empty());
 
 	std::string key("hello");
@@ -46,9 +46,9 @@ TEST(trie, empty)
 	EXPECT_FALSE(t.empty());
 }
 
-TEST(trie, size)
+TEST(trie_map, size)
 {
-	q::trie<char, int> t;
+	q::trie_map<char, int> t;
 	EXPECT_EQ(0u, t.size());
 
 	std::string key("hello");

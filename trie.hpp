@@ -8,7 +8,7 @@ namespace q
 
 
 template<class TKey, class TValue>
-class trie
+class trie_map
 {
 	template<class TNodeKey, class TNodeValue>
 	struct trie_node
