@@ -1,6 +1,7 @@
-#include <gtest/gtest.h>
-
+#include "test.h"
 #include "trie.hpp"
+
+BEGIN_TEST_CLASS(trie_map)
 
 TEST(trie_map, clear)
 {
@@ -55,3 +56,5 @@ TEST(trie_map, size)
 	t.emplace(key.begin(), key.end());
 	EXPECT_EQ(1u, t.size());
 }
+
+END_TEST_CLASS
